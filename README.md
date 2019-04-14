@@ -1,7 +1,7 @@
 # Linux shell scripts 
-### sh & bash
+sh & bash
 
-## Scripts:
+### Scripts:
 - low battery check 
 - battery check
 - i3lock+suspend for xautolock
