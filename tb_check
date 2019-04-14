@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Script to check if thunderbird is running, else start it in headless mode for notifications,
+# Use cronjob
+
+tb_status=`pgrep -f thunderbird | wc -l`
+
+if [[ $tb_status = 0  ]]
+then
+	thunderbird --headless &
+elif [[ $tb_stauts > 0 ]]
+then
+	exit
+fi	

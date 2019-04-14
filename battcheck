@@ -1,0 +1,54 @@
+#!/bin/bash
+
+lowbat_list=`pgrep -f lowbattery-check.sh | wc -l`
+
+if [ "$1" == "start" ]
+then
+	if [[ $lowbat_list = 0 ]]
+	then	
+		if [ -e /tmp/lowbat.pid ]
+		then
+			rm /tmp/lowbat.pid
+		fi
+		~/ownCloud/Linux/scripts/lowbattery-check.sh & 
+		echo "Battery-check script started!"
+	else
+		if [ ! -e /tmp/lowbat.pid ]
+		then
+			pgrep -f lowbattery-check.sh | xargs kill
+			~/ownCloud/Linux/scripts/lowbattery-check.sh &
+		fi
+		echo "Battery-check script is already running!"
+	fi
+elif [ "$1" == "stop" ]
+then
+	if [[ $lowbat_list > 0 ]]
+	then
+		if [ -e /tmp/lowbat.pid ]
+		then
+			rm /tmp/lowbat.pid
+		fi
+		pgrep -f lowbattery-check.sh | xargs kill
+		echo "Battery-check script stopped!"
+	else
+		if [ -e /tmp/lowbat.pid ]
+		then
+			rm /tmp/lowbat.pid
+		fi
+		echo "Battery-check script is not running! Nothing to stop."
+	fi
+elif [ "$1" == "status" ]
+then
+	echo `acpi`
+	if [[ $lowbat_list = 0 ]] && [ ! -e /tmp/lowbat.pid  ]
+	then
+		echo "Battery-check script is not running."
+	elif [[ $lowbat_list = 1 ]] && [ -e /tmp/lowbat.pid ]
+	then
+		echo "Battery-check script is running."
+	else 
+		echo -e "Battery-check script is not running correctly!\nUse 'start' to start it correctly or 'stop' to completely stop it."
+	fi
+else 
+	echo -e "battcheck - start or stop low-battery-check script\n	start 	- start the script\n	stop 	- stop the script\n	status	- show status of script and battery"
+fi

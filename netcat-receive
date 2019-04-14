@@ -1,0 +1,5 @@
+#!/bin/bash
+# just netcat command to listen for incoming files from sender
+# get port
+read -e -p "Enter port: " port
+nc -lvv -p $port | tar x
