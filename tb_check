@@ -8,7 +8,7 @@ tb_status=`pgrep -f thunderbird | wc -l`
 if [[ $tb_status = 0  ]]
 then
 	thunderbird --headless &
-elif [[ $tb_stauts > 0 ]]
+elif [[ $tb_status > 0 ]]
 then
 	exit
 fi	
