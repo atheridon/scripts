@@ -2,7 +2,7 @@
 
 if [ "$1" == "-?" ] || [ "$1" == "-h" ] || [ "$1" == "--help" ] || [ "$1" == "" ]
 then
-	echo -e "Usage: bk2github --backup\n\nBash script used to backup files/directories to github.\nEdit the script to change the files that should be backed up to github.\nMake sure to also adjust the github repository which will be cloned/pushed.\n"
+	echo -e "Usage: bk2github --backup\n\nBash script used to backup files/directories to github.\nEdit the script to change the files that should be backed up to github.\nMake sure to also adjust the github repository which will be cloned & pushed.\n"
 elif [ "$1" == "--backup" ]
 then
 	# files & direcotries to backup to github, modify to add new ones
