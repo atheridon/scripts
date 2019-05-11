@@ -1,0 +1,44 @@
+#!/bin/sh
+
+# Help
+if [[ $1 == "" ]] || [[ $1 == "help" ]] || [[ $1 == "--help" ]] || [[ $1 == "-h" ]]
+then
+	printf "Usage: xdisplay DISPLAY SIDE OPTION\n
+	DISPLAY	= hdmi, dvi
+	SIDE	= left, right
+	OPTION	= mirror or leave it empty for no mirroring\n\n"
+	printf "Shell script for xrandr to quickly add second monitor.\n"
+else 
+	# Get display
+	if [[ $1 == "dvi" ]] || [[ $1 == "DVI" ]]
+	then
+		xscreen_display="DP1"	
+	elif [[ $1 == "hdmi" ]] || [[ $1 == "HDMI" ]]
+	then
+		xscreen_display="HDMI1"
+	else 
+		echo "Error: Display not found"
+	fi
+
+	# Get display side
+	if [[ $2 == "left" ]] || [[ $2 == "LEFT" ]] 
+	then
+		xscreen_side="--left-of"
+	elif [[ $2 == "right" ]] || [[ $2 == "RIGHT" ]]
+	then
+		xscreen_side="--right-of"
+	else
+		echo "Error: Side not found"
+	fi
+
+	# Get mirror yes/no?
+	if [[ $3 == "mirror" ]] || [[ $3 == "MIRROR" ]]
+	then
+		xrandr --output eDP1 --auto --output $xscreen_display --auto --same-as eDP1
+	elif [[ $3 == "" ]]
+	then
+		xrandr --auto --output eDP1 --mode 1920x1080 $xscreen_side $xscreen_display
+	else 
+		echo "Error: '$3' not found"
+	fi
+fi
