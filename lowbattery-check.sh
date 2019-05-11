@@ -25,7 +25,7 @@ do
 			fi
 		elif [[ `acpi -b | grep -P -o '[0-9]+(?=%)'` -le 10 ]]
 		then
-			/usr/bin/notify-send "Battery low!" "`acpi -b | grep -P -o '[0-9]+(?=%)'` remaining"
+			/usr/bin/notify-send "Battery low!" "`acpi -b | grep -P -o '[0-9]+(?=%)'`% remaining"
 		fi
 	fi
 	sleep 300

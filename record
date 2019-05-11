@@ -1,0 +1,5 @@
+#!/bin/sh
+
+clip_name=`date +"%b%d::%H%M%S"`
+
+asciinema rec ~/tmp/clips/$clip_name.clip
