@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# Color
+CYAN='\033[0;36m'
+NC='\033[0m'
+
+echo -en "${CYAN}Local IP: ${NC}"; ip -4 addr | grep -oP '(?<=inet\s)\d+(\.\d+){3}' | tail -n 1
+echo -en "${CYAN}Public IP: ${NC}"; curl http://ident.me; echo ""
