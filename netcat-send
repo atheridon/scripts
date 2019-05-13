@@ -1,7 +1,9 @@
 #!/bin/bash
-# script to send files through network with netcat+tar
-# get file/directory from user input
+
+# netcat sender script
+
 read -e -p "Enter file/directory to send: " fname
+
 # check if file/directory exists
 if [ -f $fname ] || [ -d $fname ]; then
 	# get ip addr
@@ -14,17 +16,17 @@ if [ -f $fname ] || [ -d $fname ]; then
 		read -e -p "Confirm sending '$fname' to '$receiving_ip:$port' (Y/N): " confirm
 		if [ $confirm == y ] || [ $confirm == Y ] || [ $confirm == yes ] || [ $confirm == Yes ]; then
 			# netcat and tar to send file/folder
-			tar cf - $fname | nc -cv $receiving_ip $port
+			cat $fname | netcat $receiving_ip $port
 		else
-			echo "Not working"
+			echo "Error: File transfer not working"
 		fi
 	else
-		echo "Cannot reach receiving client! Check connectivity. Aborting."
+		echo "Error: Cannot reach receiving client! Check connectivity. Aborting."
 	fi
 elif [ $fname == "" ]; then
 	echo "No file/directory selected!"
-	~/.scripts/netcat-send && exit
+	~/ownCloud/Linux/scripts/netcat-send && exit
 else
 	echo "$fname does not exist!"
-	~/.scripts/netcat-send && exit
+	~/ownCloud/Linux/scripts/netcat-send && exit
 fi
