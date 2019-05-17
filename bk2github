@@ -18,8 +18,8 @@ then
 	backup_files[8]="$HOME/.vimrc"
 	backup_files[9]="$HOME/.bashrc"
 	backup_files[10]="$HOME/.xinitrc"
-	backup_files[11]="/etc/bash.bashrc"
-	backup_files[12]="/etc/xdg/compton.conf"
+	backup_files[11]="$HOME/.config/compton/"
+	backup_files[12]="/etc/bash.bashrc"
 
 	# create temporary directory
 	temp_dir="/tmp/bk2github_temp"
@@ -48,11 +48,8 @@ then
 		counter=$(( $counter+1 ))
 	done
 
-	mkdir $temp_dir/compton/
 	mkdir $temp_dir/rcfiles/
 
-	# move compton and rc files into their specific folders (optional)
-	mv -v $temp_dir/compton.conf $temp_dir/compton/
 	# .vim and .vimrc get into vim/ directory
 	mv -v $temp_dir/.vim $temp_dir/vim/ && mv .v $temp_dir/.vimrc $temp_dir/vim/
 	# then move any other rcfile into rcfiles/
