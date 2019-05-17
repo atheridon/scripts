@@ -2,4 +2,14 @@
 
 clip_name=`date +"%b%d::%H%M%S"`
 
-asciinema rec ~/tmp/clips/$clip_name.clip
+if [ -d ~/tmp/clips ]; then
+	asciinema rec ~/tmp/clips/$clip_name.clip
+else 
+	read -e -p "Create directory: /home/$USER/tmp/clips? (Y/n) " clip_dir
+	if [[ $clip_dir == "" ]] || [[ $clip_dir == "y" ]] || [[ $clip_dir == "Y" ]] || [[ $clip_dir == "yes" ]] || [[ $clip_dir == "YES" ]]; then
+		mkdir -p /home/$USER/tmp/clips
+		asciinema rec ~/tmp/clips/$clip_name.clip
+	else 
+		exit
+	fi
+fi
