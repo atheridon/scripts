@@ -9,3 +9,6 @@ sh & bash
 - pmenu for rofi menu
 - netcat-receive & netcat-send (crap)
 - bk2github for backing up my dotfiles to github
+- Local & Public IP script
+- record for asciinema
+- xrandr script for adding multiple displays
