@@ -8,7 +8,7 @@ if [[ $checki3lock = 0 ]]
 then
 	i3lock-next "`uname -r`" IBMPlexMono 15 &
 	sleep 1
-	systemctl suspend
+	sudo s2ram
 else
-	systemctl suspend
+	sudo s2ram
 fi
