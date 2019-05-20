@@ -14,12 +14,11 @@ then
 	backup_files[4]="$HOME/.config/sxiv/"
 	backup_files[5]="$HOME/.config/ranger/"
 	backup_files[6]="$HOME/.config/rofi/"
-	backup_files[7]="$HOME/.vim/"
-	backup_files[8]="$HOME/.vimrc"
-	backup_files[9]="$HOME/.bashrc"
-	backup_files[10]="$HOME/.xinitrc"
-	backup_files[11]="$HOME/.config/compton/"
-	backup_files[12]="/etc/bash.bashrc"
+	backup_files[7]="$HOME/.vimrc"
+	backup_files[8]="$HOME/.bashrc"
+	backup_files[9]="$HOME/.xinitrc"
+	backup_files[10]="$HOME/.config/compton/"
+	backup_files[11]="/etc/bash.bashrc"
 
 	# create temporary directory
 	temp_dir="/tmp/bk2github_temp"
@@ -50,8 +49,6 @@ then
 
 	mkdir $temp_dir/rcfiles/
 
-	# .vim and .vimrc get into vim/ directory
-	mv -v $temp_dir/.vim $temp_dir/vim/ && mv .v $temp_dir/.vimrc $temp_dir/vim/
 	# then move any other rcfile into rcfiles/
 	mv -v $temp_dir/*rc $temp_dir/rcfiles/ && mv -v $temp_dir/.*rc $temp_dir/rcfiles/ 
 
