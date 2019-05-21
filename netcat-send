@@ -14,7 +14,7 @@ if [ -f $fname ] || [ -d $fname ]; then
 		read -e -p "Enter Port: " port
 		# ask for confirmation
 		read -e -p "Confirm sending '$fname' to '$receiving_ip:$port' (Y/N): " confirm
-		if [ $confirm == y ] || [ $confirm == Y ] || [ $confirm == yes ] || [ $confirm == Yes ]; then
+		if [[ $confirm == y ]] || [[ $confirm == Y ]] || [[ $confirm == yes ]] || [[ $confirm == Yes ]]; then
 			# netcat and tar to send file/folder
 			cat $fname | netcat $receiving_ip $port
 		else
