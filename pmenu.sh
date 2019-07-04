@@ -4,6 +4,6 @@ MENU="$(rofi -sep "|" -dmenu -i -p 'System' -location 3 -yoffset 25 -xoffset -25
             case "$MENU" in
                 *Sleep) /home/flo/ownCloud/Linux/scripts/i3locksuspend.sh & ;;
                 *Logout) i3-msg exit;;
-                *Reboot) systemctl reboot ;;
-                *Shutdown) systemctl -i poweroff
+                *Reboot) reboot ;;
+                *Shutdown) shutdown now
 esac

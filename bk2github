@@ -8,17 +8,15 @@ then
 	# files & direcotries to backup to github, modify to add new ones
 	backup_files=()
 	backup_files[0]="$HOME/.config/i3/"
-	backup_files[1]="$HOME/.config/i3lock-next/"
-	backup_files[2]="$HOME/.config/polybar/"
-	backup_files[3]="$HOME/.config/dunst/"
-	backup_files[4]="$HOME/.config/sxiv/"
-	backup_files[5]="$HOME/.config/ranger/"
-	backup_files[6]="$HOME/.config/rofi/"
-	backup_files[7]="$HOME/.vimrc"
-	backup_files[8]="$HOME/.bashrc"
-	backup_files[9]="$HOME/.xinitrc"
-	backup_files[10]="$HOME/.config/compton/"
-	backup_files[11]="/etc/bash.bashrc"
+	backup_files[1]="$HOME/.config/polybar/"
+	backup_files[2]="$HOME/.config/dunst/"
+	backup_files[3]="$HOME/.config/sxiv/"
+	backup_files[4]="$HOME/.config/ranger/"
+	backup_files[5]="$HOME/.config/rofi/"
+	backup_files[6]="$HOME/.vimrc"
+	backup_files[7]="$HOME/.bashrc"
+	backup_files[8]="$HOME/.xinitrc"
+	backup_files[9]="$HOME/.config/compton/"
 
 	# create temporary directory
 	temp_dir="/tmp/bk2github_temp"
@@ -50,7 +48,8 @@ then
 	mkdir $temp_dir/rcfiles/
 
 	# then move any other rcfile into rcfiles/
-	mv -v $temp_dir/*rc $temp_dir/rcfiles/ && mv -v $temp_dir/.*rc $temp_dir/rcfiles/ 
+	mv -v $temp_dir/*rc $temp_dir/rcfiles/
+	mv -v $temp_dir/.*rc $temp_dir/rcfiles/ 
 
 	# add all the files to git
 	cd $temp_dir && git add . && git commit -m "new things :o" && git push

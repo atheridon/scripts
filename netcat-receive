@@ -1,8 +1,0 @@
-#!/bin/bash
-
-# netcat receiver script
-
-read -e -p "Enter port: " port
-read -e -p "Enter file name: " fname
-
-nc -l -p $port > $fname < /dev/null
