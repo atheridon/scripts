@@ -13,10 +13,10 @@ then
 	backup_files[3]="$HOME/.config/sxiv/"
 	backup_files[4]="$HOME/.config/ranger/"
 	backup_files[5]="$HOME/.config/rofi/"
-	backup_files[6]="$HOME/.vimrc"
-	backup_files[7]="$HOME/.bashrc"
-	backup_files[8]="$HOME/.xinitrc"
-	backup_files[9]="$HOME/.config/compton/"
+	backup_files[6]="$HOME/.config/compton/"
+	backup_files[7]="$HOME/.vimrc"
+	backup_files[8]="$HOME/.bashrc"
+	backup_files[9]="$HOME/.xinitrc"
 
 	# create temporary directory
 	temp_dir="/tmp/bk2github_temp"

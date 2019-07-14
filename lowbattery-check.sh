@@ -21,7 +21,7 @@ do
 			# check if battery is charging again and not discharging anymore
 			if [ `acpi -b | cut -f 3 -d " "` == Discharging, ]
 			then
-				sudo halt	
+				shutdown now	
 			fi
 		elif [[ `acpi -b | grep -P -o '[0-9]+(?=%)'` -le 10 ]]
 		then
