@@ -1,5 +1,5 @@
 #!/bin/bash
 
-i3lock-next &
+i3lock-next "3N73R P455W0RD 70 UN10CK" IBMPlexMono 14 &
 sleep 1
 systemctl suspend
