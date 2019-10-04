@@ -5,7 +5,7 @@ if [[ $1 == "" ]] || [[ $1 == "help" ]] || [[ $1 == "HELP" ]]
 then
 	printf "Usage: xdisplay [RESET] DISPLAY SIDE\n
 	RESET	= xdisplay reset
-	DISPLAY	= hdmi, dvi
+	DISPLAY	= hdmi, vga
 	SIDE	= left, right, mirror\n\n"
 	printf "Shell script for xrandr to quickly add second monitor.\n"
 elif [[ $1 == "reset" ]] || [[ $1 == "RESET" ]]
@@ -15,7 +15,7 @@ then
 	sleep 1; i3-msg restart &
 else 
 	# Get display
-	if [[ $1 == "dvi" ]] || [[ $1 == "DVI" ]]
+	if [[ $1 == "vga" ]] || [[ $1 == "VGA" ]]
 	then
 		xscreen_display="DP1"	
 	elif [[ $1 == "hdmi" ]] || [[ $1 == "HDMI" ]]
