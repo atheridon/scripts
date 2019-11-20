@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# Record terminal with asciinema and save clips under ~/tmp/clips
+
 clip_name=`date +"%b%d::%H%M%S"`
 
 if [ -d ~/tmp/clips ]; then
