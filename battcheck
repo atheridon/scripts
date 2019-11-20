@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Run acpi and also check if the battery-check script is running correctly
+
 lowbat_list=`pgrep -f lowbattery-check.sh | wc -l`
 
 if [ "$1" == "start" ]
