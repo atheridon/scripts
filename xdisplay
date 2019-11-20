@@ -32,7 +32,7 @@ else
 	elif [[ $2 == "right" ]] || [[ $2 == "RIGHT" ]]
 	then
 		xscreen_side="--left-of"
-	elif [[ $2 == "mirror" ]] || [[ $2 == mirror ]]
+	elif [[ $2 == "mirror" ]] || [[ $2 == "MIRROR" ]]
 	then
 		xrandr --output eDP1 --auto --output $xscreen_display --auto --same-as eDP1 &
 		sleep 3; i3-msg restart &
