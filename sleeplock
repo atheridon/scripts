@@ -1,5 +1,5 @@
 #!/bin/sh
 
-slock &
+i3lock-next &
 sleep 1
 systemctl suspend
