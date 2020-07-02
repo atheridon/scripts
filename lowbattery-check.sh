@@ -13,8 +13,8 @@ do
 	# check if battery is charging or discharging
 	if [[ `acpi -b | cut -f 3 -d " "` == Discharging, ]]
 	then
-		# check if battery level is less or equal to 3%
-		if [[ `acpi -b | grep -P -o '[0-9]+(?=%)'` -le 4 ]]
+		# check if battery level is less or equal to 5%
+		if [[ `acpi -b | grep -P -o '[0-9]+(?=%)'` -le 5 ]]
         	then
             		/usr/bin/notify-send "Shutting down in 10 seconds..."
             		sleep 10
