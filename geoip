@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# Get geo location of ip address
+curl https://freegeoip.app/xml/"$1"
