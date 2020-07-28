@@ -2,7 +2,7 @@
 
 # Run acpi and also check if the battery-check script is running correctly
 
-lowbat_list=`pgrep -f lowbattery-check.sh | wc -l`
+lowbat_list=`pgrep -f lowbattery-check | wc -l`
 
 if [ "$1" == "start" ]
 then
@@ -12,13 +12,13 @@ then
 		then
 			rm /tmp/lowbat.pid
 		fi
-		~/nextcloud/Linux/scripts/lowbattery-check.sh & 
+		~/owncloud/Linux/scripts/lowbattery-check & 
 		echo "Battery-check script started!"
 	else
 		if [ ! -e /tmp/lowbat.pid ]
 		then
-			pgrep -f lowbattery-check.sh | xargs kill
-			~/nextcloud/Linux/scripts/lowbattery-check.sh &
+			pgrep -f lowbattery-check | xargs kill
+			~/owncloud/Linux/scripts/lowbattery-check &
 		fi
 		echo "Battery-check script is already running!"
 	fi
@@ -30,7 +30,7 @@ then
 		then
 			rm /tmp/lowbat.pid
 		fi
-		pgrep -f lowbattery-check.sh | xargs kill
+		pgrep -f lowbattery-check | xargs kill
 		echo "Battery-check script stopped!"
 	else
 		if [ -e /tmp/lowbat.pid ]

@@ -1,5 +1,5 @@
 #!/bin/sh
 
-i3lock-next &
+slock -m "Locked at $(date)" &
 sleep 1
 systemctl suspend
