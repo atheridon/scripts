@@ -1,0 +1,12 @@
+#!/bin/bash
+# simple dmenu power menu
+
+DMENU='dmenu -i -fn IBMPlexMono:size=13 -nb #000000'
+choice=$(echo -e "sleep\nlogout\nreboot\nshutdown" | $DMENU)
+
+case "$choice" in
+	sleep) ~/owncloud/Linux/scripts/sleeplock ;;
+	logout) killall dwm ;;
+	reboot) reboot ;;
+	shutdown) shutdown now ;;
+esac
