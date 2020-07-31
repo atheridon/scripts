@@ -1,47 +1,13 @@
-#!/bin/sh
+#!/bin/bash
+# simply manage multiple monitors
 
-# Quickly adjust multiple monitors with xrandr and i3
+DMENU='dmenu -i -fn IBMPlexMono:size=13 -nb #000000 -p Run:'
+choice=$(echo -e "laptop\nhdmi\nvga\nlaptop+hdmi\nlaptop+vga" | $DMENU)
 
-# Help
-if [[ $1 == "" ]] || [[ $1 == "help" ]] || [[ $1 == "HELP" ]]
-then
-	printf "Usage: xdisplay [RESET] DISPLAY SIDE\n
-	RESET	= xdisplay reset
-	DISPLAY	= hdmi, vga
-	SIDE	= left, right, mirror\n\n"
-	printf "Shell script for xrandr to quickly add second monitor.\n"
-elif [[ $1 == "reset" ]] || [[ $1 == "RESET" ]]
-then
-	xrandr --output DP1 --off
-	xrandr --output HDMI1 --off
-	sleep 1; i3-msg restart &
-else 
-	# Get display
-	if [[ $1 == "vga" ]] || [[ $1 == "VGA" ]]
-	then
-		xscreen_display="DP1"	
-	elif [[ $1 == "hdmi" ]] || [[ $1 == "HDMI" ]]
-	then
-		xscreen_display="HDMI1"
-	else 
-		echo "Error: Display not found"
-	fi
-
-	# Get display side
-	if [[ $2 == "left" ]] || [[ $2 == "LEFT" ]] 
-	then
-		xscreen_side="--right-of"
-	elif [[ $2 == "right" ]] || [[ $2 == "RIGHT" ]]
-	then
-		xscreen_side="--left-of"
-	elif [[ $2 == "mirror" ]] || [[ $2 == "MIRROR" ]]
-	then
-		xrandr --output eDP1 --auto --output $xscreen_display --auto --same-as eDP1 &
-		sleep 3; i3-msg restart &
-	else
-		echo "Error: Side not found"
-	fi
-
-	xrandr --auto --output eDP1 --mode 1920x1080 $xscreen_side $xscreen_display &
-	sleep 3; i3-msg restart &
-fi
+case "$choice" in
+	laptop) xrandr --output eDP1 --auto --output DP1 --auto --off --output HDMI1 --auto --off ;;
+	hdmi) if [ `xrandr | grep -w HDMI1 | grep " connected " | awk '{ print$1 }'` ]; then xrandr --output HDMI1 --auto --output eDP1 --auto --off --output DP1 --auto --off; fi ;;
+	vga) if [ `xrandr | grep -w DP1 | grep " connected " | awk '{ print$1 }'` ]; then xrandr --output DP1 --auto --output eDP1 --auto --off --output HDMI1 --auto --off; fi ;;
+	laptop+hdmi) xrandr --output eDP1 --auto --left-of HDMI1 ;;
+	laptop+vga) xrandr --output eDP1 --auto --left-of DP1 ;;
+esac
