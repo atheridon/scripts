@@ -1,7 +1,7 @@
 #!/bin/bash
 # simple dmenu power menu
 
-DMENU='dmenu -i -fn IBMPlexMono:semibold:size=13 -nb #000000 -p Power:'
+DMENU='dmenu -i -fn IBMPlexMono:semibold:size=12 -nb #000000 -p Power:'
 choice=$(echo -e "sleep\nlogout\nreboot\nshutdown" | $DMENU)
 
 case "$choice" in
