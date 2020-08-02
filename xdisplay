@@ -1,7 +1,7 @@
 #!/bin/bash
 # simply manage multiple monitors
 
-DMENU='dmenu -i -fn IBMPlexMono:semibold:size=12 -nb #000000 -p Display:'
+DMENU='dmenu -i -c -g 1 -l 5 -fn IBMPlexMono:semibold:size=12 -nb #000000 -p Display:'
 choice=$(echo -e "laptop\nhdmi\nvga\nlaptop+hdmi\nlaptop+vga" | $DMENU)
 
 case "$choice" in
