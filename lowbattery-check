@@ -28,5 +28,5 @@ do
 			/usr/bin/notify-send "Battery low!" "`acpi -b | grep -P -o '[0-9]+(?=%)'`% remaining"
 		fi
 	fi
-	sleep 300
+	sleep 60
 done
