@@ -9,6 +9,6 @@ case "$choice" in
 	laptop) xrandr --output eDP1 --auto --output DP1 --auto --off --output HDMI1 --auto --off ;;
 	hdmi) if [ `xrandr | grep -w HDMI1 | grep " connected " | awk '{ print$1 }'` ]; then xrandr --output HDMI1 --auto --output eDP1 --auto --off --output DP1 --auto --off; fi ;;
 	vga) if [ `xrandr | grep -w DP1 | grep " connected " | awk '{ print$1 }'` ]; then xrandr --output DP1 --auto --output eDP1 --auto --off --output HDMI1 --auto --off; fi ;;
-	laptop+hdmi) xrandr --output eDP1 --auto --left-of HDMI1 ;;
-	laptop+vga) xrandr --output eDP1 --auto --left-of DP1 ;;
+	laptop+hdmi) xrandr --output HDMI1 --auto --right-of eDP1 ;;
+	laptop+vga) xrandr --output DP1 --auto --right-of eDP1 ;;
 esac
