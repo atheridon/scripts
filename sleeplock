@@ -1,8 +1,5 @@
 #!/bin/sh
 
-if [ `xssstate -s` == "off" ]; then
-	slock -m "Locked at $(date)" &
-fi
-
+slock -m "Locked at $(date)" &
 sleep 1
 systemctl suspend
