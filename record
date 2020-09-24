@@ -4,7 +4,7 @@
 
 clip_name=`date +"%b%d::%H%M%S"`
 
-if [ -d ~/tmp/clips ]; then
+if [ -d ~/clips ]; then
 	asciinema rec ~/tmp/clips/$clip_name.clip
 else 
 	read -e -p "Create directory: /home/$USER/tmp/clips? (Y/n) " clip_dir
