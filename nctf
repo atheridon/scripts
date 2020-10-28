@@ -1,0 +1,41 @@
+#!/bin/bash
+
+while true
+do
+	echo -n "receive[0] or send[1] file/dir?: "
+	read method
+
+	if [ $method -eq 0 ]; then
+		echo -n "Port: "
+		read port
+		if [ -n "$port" ]; then
+			nc -l -p $port | xz -dc | tar xvf -
+			break
+		else 
+			echo "Please specify a port!"
+		fi
+	elif [ $method -eq 1 ]; then
+		echo -n "Receiver IP: "
+		read recIP
+		if [ -n "$recIP" ]; then
+			echo -n "Port: "
+			read port
+			if [ -n "$port" ]; then
+				echo -n "file/dir: "
+				read file
+				if [ -n "$file" ]; then
+					tar cvf - $file | xz -c | nc -c $recIP $port
+					break
+				else 
+					echo "Please specify a file or directory!"
+				fi
+			else
+				echo "Please specify a port!"
+			fi
+		else
+			echo "Please specify a receiver IP!"
+		fi
+	else
+		break
+	fi
+done
