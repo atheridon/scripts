@@ -5,12 +5,9 @@
 
 while true
 do
-	echo -n "receive[0] or send[1] file/dir?: "
-	read method
-
+	read -p "receive[0] or send[1] file/dir?: " method
 	if [ $method -eq 0 ]; then
-		echo -n "Port: "
-		read port
+		read -p "Port: " port 
 		if [ -n "$port" ]; then
 			nc -l -p $port | xz -dc | tar xvf -
 			break
@@ -18,14 +15,11 @@ do
 			echo "Please specify a port!"
 		fi
 	elif [ $method -eq 1 ]; then
-		echo -n "Receiver IP: "
-		read recIP
+		read -p "Receiver IP: " recIP
 		if [ -n "$recIP" ]; then
-			echo -n "Port: "
-			read port
+			read -p "Port: " port
 			if [ -n "$port" ]; then
-				echo -n "file/dir: "
-				read file
+				read -e -p "file/dir: " file
 				if [ -n "$file" ]; then
 					tar cvf - $file | xz -c | nc -c $recIP $port
 					break
