@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# netcat file transfer script 
+# receiver and sender 
+
 while true
 do
 	echo -n "receive[0] or send[1] file/dir?: "
