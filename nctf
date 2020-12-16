@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # netcat file transfer script 
-# receiver and sender 
+# for receiver and sender 
 
 while true
 do
