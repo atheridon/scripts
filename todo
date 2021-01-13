@@ -8,7 +8,6 @@
 
 file="$HOME/owncloud/todo"
 touch "$file"
-sort -t. -k2n -o $file $file
 height=$(wc -l "$file" | awk '{print $1}')
 prompt="Add/delete a task: "
 
