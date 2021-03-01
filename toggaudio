@@ -1,0 +1,42 @@
+#!/bin/bash
+
+usage="usage: toggaudio [DEVICE] [OPTION]\nDevices:\n\tcapture, cap\n\tvolume, vol\nOptions:\n\ton, off\n"
+
+device=$1
+option=$2
+
+# set device
+if [ "$device" = 'capture' ] || [ "$device" = 'cap' ]; then
+	device="Capture"
+elif [ "$device" = 'volume' ] || [ "$device" = 'vol' ]; then
+	device="Master"
+else
+	printf "$usage"
+	exit 1
+fi
+
+# set correct option for device
+if [ "$option" = 'on' ]; then
+	if [ "$device" = "Capture" ]; then
+		option="cap"
+	elif [ "$device" = "Master" ]; then
+		option="unmute"
+	else 
+		printf "$usage"
+	fi
+elif [ "$option" = 'off' ]; then
+	if [ "$device" = "Capture" ]; then
+		option="nocap"
+	elif [ "$device" = "Master" ]; then
+		ption="mute"
+	else 
+		printf "$usage"
+	fi
+else
+	printf "$usage"
+	exit 1
+fi
+
+# execute command
+amixer -D pulse set $device $option
+exit 0
