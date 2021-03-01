@@ -1,6 +1,6 @@
 #!/bin/bash
 
-usage="usage: toggaudio [DEVICE] [OPTION]\nDevices:\n\tcapture, cap\n\tvolume, vol\nOptions:\n\ton, off\n"
+usage="usage: toggaudio [DEVICE] [OPTION]\n\nDEVICE:\n\tcap, capture\n\tvol, volume\nOPTION:\n\ton\n\toff\n"
 
 device=$1
 option=$2
