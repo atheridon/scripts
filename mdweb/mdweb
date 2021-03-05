@@ -1,0 +1,55 @@
+#!/usr/bin/sh
+
+usage="Usage: mdweb FILE"
+
+mdfile=$1
+
+if [ -z $mdfile ] || [ $mdfile = "--help" ] || [ $mdfile = "-h" ]; then
+	printf "Usage: mdweb FILE\nConvert a Markdown file to a complete HTML file.\n\nFILE:\n\t<name>.md\tMarkdown file to convert\n\nMust have a ./src directory including a head.html and foot.html file.\nThe Markdown file will be put in between as HTML code.\n"
+	exit 2
+fi
+
+# check if using markdown as source file
+if echo $mdfile | grep -E -q ".+(\.md)$"; then
+	echo ">> using markdown file \"$mdfile\""
+	htmlfile=$(echo $mdfile | sed 's/.md$//').html
+else 
+	echo "mdweb: $mdfile: Wrong file format! Use .md only"
+	echo $usage
+	exit 1
+fi
+
+# check if ./src dir exists including necessary files
+if [ ! -f ./src/head.html ] || [ ! -f ./src/foot.html ]; then
+	echo "Missing ./src files! Need ./src/head.html and ./src/foot.html"
+	exit 1
+fi
+
+# check if ./dst dir exists
+if [ ! -d ./dst ]; then
+	mkdir ./dst
+fi
+
+# convert using pandoc
+tmpfile=$(echo $mdfile | sed 's/.md$//')_tmp.html
+if pandoc $mdfile -o $tmpfile; then
+	echo ">> Successfully converted \"$mdfile\" to \"$tmpfile\""
+else 
+	exit 1
+fi
+
+# combine generated HTML file with head and foot
+if cat ./src/head.html $tmpfile ./src/foot.html > ./dst/$htmlfile; then
+	echo ">> Successfully generated HTML file"
+else 
+	exit 1
+fi
+
+# cleanup
+echo ">> Cleaning up..."
+if rm $tmpfile; then
+	echo ">> Finished. Exiting."
+	exit 0
+else
+	exit 1
+fi
