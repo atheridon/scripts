@@ -1,12 +1,4 @@
 # Linux shell scripts 
 
-## Scripts
-+ battcheck
-+ geoip
-+ lock
-+ lowbattery-check
-+ myip
-+ pdmenu
-+ record
-+ sleeplock
-+ xdisplay
+Various shell (bash) scripts for pretty much anything.
+Use them at your own risk!
