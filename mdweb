@@ -1,0 +1,84 @@
+#!/usr/bin/sh
+
+###
+#
+# create a ./src directory inside your working directory
+# containing head.html and foot.html inside it
+#
+###
+
+if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
+	printf "Usage: mdweb <src> <dst>\n\nsrc: html file\ndst: markdown file\n"
+	exit 0
+fi
+
+mdfile=$1
+htmlfile=$2
+
+if [ -z $mdfile ]; then
+	echo "mdweb: missing markdown source file"
+	exit 2
+fi
+
+if [ -z $htmlfile ]; then 
+	echo "mdweb: missing html destination file"
+	exit 2
+fi
+
+# check if using markdown as source file
+if echo $mdfile | grep -E -q ".+(\.md)$"; then
+	echo ">> src: \"$mdfile\""
+else 
+	echo "mdweb: $mdfile: wrong source file format" 
+	exit 2
+fi
+
+# check if using html as destination file
+if echo $htmlfile | grep -E -q ".+(\.html)$"; then
+	echo ">> dst: \"$htmlfile\""
+else 
+	echo "mdweb: $htmlfile: wrong destination file format" 
+	exit 2
+fi
+
+# check if ./src dir exists including necessary files
+if [ ! -d ./src ]; then
+	echo "mdweb: missing ./src directory"
+	exit 1
+fi
+
+if [ ! -f ./src/head.html ]; then
+   echo "mdweb: missing ./src/head.html"	
+   exit 1
+fi
+
+if [ ! -f ./src/foot.html ]; then
+	echo "mdweb: missing ./src/foot.html"
+	exit 1
+fi
+
+# convert using pandoc
+tmpfile=/tmp/$$_temp.html
+if pandoc $mdfile -o $tmpfile; then
+	echo ">> converted \"$mdfile\" to \"$tmpfile\""
+else 
+	echo "mdweb: failed to convert $mdfile to $tmpfile"
+	exit 1
+fi
+
+# combine generated html file with head and foot
+if cat ./src/head.html $tmpfile ./src/foot.html > $htmlfile; then
+	echo ">> generated $htmlfile"
+else 
+	echo "mdweb: failed to combie html files"
+	exit 1
+fi
+
+# cleanup
+echo ">> cleaning up..."
+if rm $tmpfile; then
+	echo ">> cleaned everything up. exiting..."
+else 
+	echo "mdweb: error cleaning up"
+	exit 1
+fi
