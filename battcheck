@@ -9,12 +9,12 @@ if [ "$1" == "start" ]; then
 		if [ -e /tmp/lowbat.pid ]; then
 			rm /tmp/lowbat.pid
 		fi
-		~/owncloud/Linux/scripts/lowbattery-check & 
+		~/cloud/Linux/scripts/lowbattery-check & 
 		echo "Battery-check script started!"
 	else
 		if [ ! -e /tmp/lowbat.pid ]; then
 			pgrep -f lowbattery-check | xargs kill
-			~/owncloud/Linux/scripts/lowbattery-check &
+			~/cloud/Linux/scripts/lowbattery-check &
 		fi
 		echo "Battery-check script is already running!"
 	fi
