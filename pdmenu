@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 # simple dmenu power menu
 
 #DMENU='dmenu -i -c -g 1 -l 4 -fn IBMPlexMono:semibold:size=12 -nb #000000 -p Power:'

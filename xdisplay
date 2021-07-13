@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 # simply manage multiple monitors
 
 #DMENU='dmenu -i -c -g 1 -l 5 -fn IBMPlexMono:semibold:size=12 -nb #000000 -p Display:'

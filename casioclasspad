@@ -1,0 +1,2 @@
+#!/bin/sh
+env WINEPREFIX="/home/flo/.wine" /usr/bin/wine /home/flo/.wine/drive_c/Program\ Files\ \(x86\)/CASIO/ClassPad\ Manager\ Subscription\ for\ ClassPad\ II/ClassPadManagerSubscriptionForClassPadII.exe

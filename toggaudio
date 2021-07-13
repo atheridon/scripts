@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 usage="usage: toggaudio [DEVICE] [OPTION]\n\nDEVICE:\n\tcap, capture\n\tvol, volume\nOPTION:\n\ton\n\toff\n"
 

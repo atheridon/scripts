@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Run acpi and also check if the battery-check script is running correctly
 
